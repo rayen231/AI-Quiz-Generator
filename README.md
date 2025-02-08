@@ -40,6 +40,7 @@ Navigate to the backend folder :
 - **You can get the api key from goq cloud for free as personal use !! or simply contact me**
 - start the FastAPI server
 ```bash
+mkdir output_images
 cd backend
 uvicorn main:app --reload
 ```
