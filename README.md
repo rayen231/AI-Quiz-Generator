@@ -51,9 +51,9 @@ streamlit run front.py
 ## Customization Options
 **You can fine-tune the generated quizzes by adjusting parameters such as:**
 
--Quiz Type: Choose your preferred question format (multiple-choice, yes/no, or short-answer).
--Text/Image Handling: Control the depth of image analysis and text summarization for better question generation.
--Difficulty : choose hard or medium or hard ! 
+- **Quiz Type:** Choose your preferred question format (multiple-choice, yes/no, or short-answer).
+- **Text/Image Handling:** Control the depth of image analysis and text summarization for better question generation.
+- **Difficulty :** choose hard or medium or hard ! 
 
 Now you can upload a PDF, select the quiz type, and generate your AI-powered quiz! 🎉
 
