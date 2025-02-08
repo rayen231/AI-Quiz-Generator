@@ -24,7 +24,10 @@ AI Quiz Generator is an intelligent tool that allows you to generate quizzes fro
 - **Temperature Control:** The model’s output temperature is finely adjusted based on multiple rounds of testing, ensuring a balance between creativity and accuracy.
 
 ---
+## Live Demo
+You can test the backend live at this [link](https://ai-quiz-generator.onrender.com/docs) and the full app via Streamlit at this [link](https://frontend-nsopw4rp7adjp6evycn4mc.streamlit.app).
 
+---
 ## Installation
 
 ### Requirements
@@ -92,8 +95,7 @@ Now you can upload a PDF, select the quiz type, and generate your AI-powered qui
 ![image](https://github.com/user-attachments/assets/50948e00-7ecb-47e6-9a47-6415ecd19276)
 ![image](https://github.com/user-attachments/assets/b367ea0f-849f-468f-8de2-160f94f41304)
 
-## Live Demo
-You can test the backend live at this [link] : (https://ai-quiz-generator.onrender.com/docs) and the full app via Streamlit at this [link](https://frontend-nsopw4rp7adjp6evycn4mc.streamlit.app).
+
 
 
 
