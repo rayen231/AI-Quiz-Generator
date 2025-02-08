@@ -61,6 +61,9 @@ streamlit run front.py
 - **Better Model Tuning:** Ongoing improvements in model accuracy and output coherence, based on user feedback.
 ---
 Now you can upload a PDF, select the quiz type, and generate your AI-powered quiz! 🎉
+---
+
+## Streamlit Demo : 
 ![image](https://github.com/user-attachments/assets/7279fb6e-5124-49c9-8c48-19cebaed6379)
 ![image](https://github.com/user-attachments/assets/40f73605-7adb-4af4-95ce-102b97bf2a9e)
 ![image](https://github.com/user-attachments/assets/3d405174-2fca-4299-b2a7-0c08725c240e)
@@ -71,6 +74,20 @@ Now you can upload a PDF, select the quiz type, and generate your AI-powered qui
 ![image](https://github.com/user-attachments/assets/cc9f5f2c-e3b1-4b2c-bdb6-2984b54e175a)
 ![image](https://github.com/user-attachments/assets/aebec3f5-b159-475a-9b1d-25dd8a785801)
 ![image](https://github.com/user-attachments/assets/ea043c77-aef5-4bc0-ba7d-ccd03e5b9ada)
+![image](https://github.com/user-attachments/assets/4504e399-2ce4-44ee-821b-6eab38fb3c63)
+![image](https://github.com/user-attachments/assets/f2f8ef84-19df-4277-a9c6-0a8e8c4fcf87)
+![image](https://github.com/user-attachments/assets/7bf5bbfc-8d92-4662-a116-3b7ed5a5e720)
+![image](https://github.com/user-attachments/assets/4b478b1c-f7e1-4bd8-862c-c07a3ab92dfe)
+![image](https://github.com/user-attachments/assets/3358e80e-7d6a-4ddc-90fe-a3256d7b81ff)
+
+## Fast Api Demo
+![image](https://github.com/user-attachments/assets/b0f90e07-c7ba-4390-a58d-09861664b9e6)
+![image](https://github.com/user-attachments/assets/50948e00-7ecb-47e6-9a47-6415ecd19276)
+![image](https://github.com/user-attachments/assets/b367ea0f-849f-468f-8de2-160f94f41304)
+
+
+
+
 
 
 
