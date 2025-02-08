@@ -64,7 +64,7 @@ Now you can upload a PDF, select the quiz type, and generate your AI-powered qui
 ---
 
 ## Streamlit Demo : 
-![image](https://github.com/user-attachments/assets/7279fb6e-5124-49c9-8c48-19cebaed6379)
+
 ![image](https://github.com/user-attachments/assets/40f73605-7adb-4af4-95ce-102b97bf2a9e)
 ![image](https://github.com/user-attachments/assets/3d405174-2fca-4299-b2a7-0c08725c240e)
 ![image](https://github.com/user-attachments/assets/b5ee21e5-1491-496e-acb1-e3e707379a2c)
