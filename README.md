@@ -56,9 +56,9 @@ streamlit run front.py
 - **Difficulty :** choose hard or medium or hard ! 
 ---
 ## Future Improvements
-**Advanced Question Types:** Plans to include open-ended questions and essay-type queries.
-**Multi-Language Support:** Enabling multi-language PDFs to be processed and quizzes to be generated in different languages.
-**Better Model Tuning:** Ongoing improvements in model accuracy and output coherence, based on user feedback.
+- **Advanced Question Types:** Plans to include open-ended questions and essay-type queries.
+- **Multi-Language Support:** Enabling multi-language PDFs to be processed and quizzes to be generated in different languages.
+- **Better Model Tuning:** Ongoing improvements in model accuracy and output coherence, based on user feedback.
 ---
 Now you can upload a PDF, select the quiz type, and generate your AI-powered quiz! 🎉
 
