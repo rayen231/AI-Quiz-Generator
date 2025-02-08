@@ -77,6 +77,8 @@ Now you can upload a PDF, select the quiz type, and generate your AI-powered qui
 ![image](https://github.com/user-attachments/assets/4504e399-2ce4-44ee-821b-6eab38fb3c63)
 ![image](https://github.com/user-attachments/assets/f2f8ef84-19df-4277-a9c6-0a8e8c4fcf87)
 ![image](https://github.com/user-attachments/assets/7bf5bbfc-8d92-4662-a116-3b7ed5a5e720)
+
+** In case User want to download the Quiz as a json **
 ![image](https://github.com/user-attachments/assets/4b478b1c-f7e1-4bd8-862c-c07a3ab92dfe)
 ![image](https://github.com/user-attachments/assets/3358e80e-7d6a-4ddc-90fe-a3256d7b81ff)
 
