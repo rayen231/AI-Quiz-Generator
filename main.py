@@ -2,17 +2,17 @@ from fastapi import FastAPI, UploadFile, File ,Form
 from pydantic import BaseModel
 from typing import List
 import os
-from extract_info_from_pdf import extract_pdf_content
-from quiz_based_on_pdfqcm import QuizMakerAgent_qcm as QuizMakerAgent_qcm
-from quiz_based_on_pdf_on_short_question import QuizMakerAgent_ShortQuestion as QuizMakerAgent_short_question
-from quiz_based_on_YesNo import QuizMakerAgent as QuizMakerAgent_YesNo
-from get_image_description import PictureAnalyser
+from back_end.extract_info_from_pdf import extract_pdf_content
+from back_end.quiz_based_on_pdfqcm import QuizMakerAgent_qcm as QuizMakerAgent_qcm
+from back_end.quiz_based_on_pdf_on_short_question import QuizMakerAgent_ShortQuestion as QuizMakerAgent_short_question
+from back_end.quiz_based_on_YesNo import QuizMakerAgent as QuizMakerAgent_YesNo
+from back_end.get_image_description import PictureAnalyser
 import uvicorn
-from summary_batch import DataSummarizerAgent
-from correct_question import AnswerCheckerAgent
+from back_end.summary_batch import DataSummarizerAgent
+from back_end.correct_question import AnswerCheckerAgent
 import os
 from fastapi.middleware.cors import CORSMiddleware
-from get_image_description import check_image_size
+from back_end.get_image_description import check_image_size
 
 api_key = os.getenv("API_KEY")
 app = FastAPI()
