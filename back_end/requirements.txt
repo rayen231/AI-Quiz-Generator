@@ -1,1 +1,10 @@
-g
+
+fastapi==0.111.0
+groq==0.15.0
+langchain==0.2.1
+pillow==10.3.0
+pydantic==2.7.3
+PyMuPDF==1.24.0
+requests==2.32.3
+streamlit==1.40.2
+uvicorn==0.29.0
