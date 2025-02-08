@@ -35,29 +35,34 @@ def extract_pdf_content(pdf_path, output_dir):
         page_images = []
 
         for img_index, img in enumerate(image_list, start=1):
-            xref = img[0]
-            pix = fitz.Pixmap(doc, xref)
+            try:
+                xref = img[0]
+                pix = fitz.Pixmap(doc, xref)
 
-            # Determine output file name and path
-            image_filename = f"page_{i+1}_img_{img_index}.png"
-            output_image_path = os.path.join(output_dir, image_filename)
+                # Determine output file name and path
+                image_filename = f"page_{i+1}_img_{img_index}.png"
+                output_image_path = os.path.join(output_dir, image_filename)
 
-            # If image is not CMYK (e.g., grayscale or RGB)
-            if pix.n < 5:
-                pix.save(output_image_path)
-            else:
-                # Convert CMYK to RGB
-                pix_rgb = fitz.Pixmap(fitz.csRGB, pix)
-                pix_rgb.save(output_image_path)
-                pix_rgb = None
+                # If image is not CMYK (e.g., grayscale or RGB)
+                if pix.n < 5:
+                    pix.save(output_image_path)
+                else:
+                    # Convert CMYK to RGB
+                    pix_rgb = fitz.Pixmap(fitz.csRGB, pix)
+                    pix_rgb.save(output_image_path)
+                    pix_rgb = None
 
-            pix = None
-            page_images.append(output_image_path)
+                pix = None
+                page_images.append(output_image_path)
+            except Exception as e:
+                print(f"Error processing image on page {i+1}, image {img_index}: {e}")
+                continue
 
         if page_images:  # Only include pages that have images
             image_dict[i + 1] = page_images
 
     return text_dict, image_dict
+
 
 
 # if __name__=="__main__":
