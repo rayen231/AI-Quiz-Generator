@@ -53,8 +53,11 @@ uvicorn main:app --reload
 ### Running the Frontend
 Running Locally
 If you want to run the app locally, follow the installation steps mentioned above. Additionally, to make sure everything works properly, update the following lines in the frontend/front.py with local paths:
-update those 2 variables : - QUIZ_API_URL = "http://127.0.0.1:8000/quiz"
-                           - CORRECT_API_URL = "http://127.0.0.1:8000/correct"
+update those 2 variables :
+```bash
+QUIZ_API_URL = "http://127.0.0.1:8000/quiz"
+CORRECT_API_URL = "http://127.0.0.1:8000/correct"
+```
                            
 Navigate to the frontend folder and start the Streamlit app:
 ```bash
