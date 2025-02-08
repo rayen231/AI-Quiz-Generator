@@ -1,104 +1,128 @@
-import streamlit as st
-import requests
-import json
+from fastapi import FastAPI, UploadFile, File ,Form
+from pydantic import BaseModel
+from typing import List
+import os
+from extract_info_from_pdf import extract_pdf_content
+from quiz_based_on_pdfqcm import QuizMakerAgent_qcm as QuizMakerAgent_qcm
+from quiz_based_on_pdf_on_short_question import QuizMakerAgent_ShortQuestion as QuizMakerAgent_short_question
+from quiz_based_on_YesNo import QuizMakerAgent as QuizMakerAgent_YesNo
+from get_image_description import PictureAnalyser
+import uvicorn
+from summary_batch import DataSummarizerAgent
+from correct_question import AnswerCheckerAgent
+import os
+from fastapi.middleware.cors import CORSMiddleware
+from get_image_description import check_image_size
 
-# Define API endpoints
-QUIZ_API_URL = "http://127.0.0.1:8000/quiz"
-CORRECT_API_URL = "http://127.0.0.1:8000/correct"
+api_key = os.getenv("API_KEY")
+app = FastAPI()
 
-def main():
-    st.title("Quiz Generator and Evaluator")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change "*" to specific frontend URL for security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    # File Upload and Options
-    uploaded_file = st.file_uploader("Upload a file for quiz generation", type=["txt", "pdf", "docx"])
-    difficulty = st.selectbox("Select difficulty level", ["easy", "medium", "hard"], index=1)
-    image_option = st.selectbox("Do you want the image in the pdf to be considered in quiz?", ["yes", "no"])
-    prefered_question = st.selectbox("Select preferred question type", ["QCM", "Short Question", "Yes/No"], index=1)
+class QuizResponse(BaseModel):
+    responses: List[dict]
 
-    # Generate Quiz Section
-    if uploaded_file and st.button("Generate Quiz"):
-        # Prepare the file upload payload with filename and MIME type
-        files = {"file": (uploaded_file.name, uploaded_file.getvalue(), uploaded_file.type)}
-        # Convert boolean value to a string so that it is properly parsed by the backend
-        include_image = True if image_option.lower() == "yes" else False
+@app.post("/quiz")
+async def create_quiz(
+    file: UploadFile = File(...),
+    difficulty: str = Form("medium"),
+    include_image: bool = Form(False),
+    prefered_question: str = Form("QCM")  # Ensure this matches the key in the request
+):
+    # Save the uploaded PDF file
+    print("saving file:",file.filename,".........")
+    pdf_path = f"temp_{file.filename}"
+    with open(pdf_path, "wb") as buffer:
+        buffer.write(file.file.read())
+    # Extract content from the PDF
+    text_dict, image_dict = extract_pdf_content(pdf_path, "output_images")
 
-        with st.spinner("Waiting for the API request to generate quiz..."):
-            response = requests.post(
-                QUIZ_API_URL,
-                files=files,
-                data={
-                    "difficulty": difficulty,
-                    "prefered_question": prefered_question,
-                    "include_image": str(include_image).lower()  # "true" or "false"
-                }
-            )
-        
-        if response.status_code == 200:
-            quiz_data = response.json()
-            # Assuming quiz_data["quiz_questions"] is a list of JSON strings, we load the first one
-            st.session_state.quiz = json.loads(quiz_data["quiz_questions"][0])
-        else:
-            st.error("Failed to generate quiz.")
+    if include_image:
+        if image_dict not in [None, []]:
+            # Get a description of the first image in the PDF
+            for image_page in image_dict.keys():
+                for image_path in image_dict[image_page]:
+                    # Check image size and resize if necessary
+                    image_path = check_image_size(image_path)
+                    image_description = PictureAnalyser(image_path)
+                    text_dict[image_page] += "\n cette page contain une image avec cette description" + image_description
 
-    # Display Quiz Questions and Submit Answers (only if a quiz is available)
-    if "quiz" in st.session_state:
-        st.write(f"### {st.session_state.quiz['title']}")
-        responses = []
-        user_answers = {}
-        print(st.session_state.quiz['questions'])
-        for idx, q in enumerate(st.session_state.quiz['questions']):
-            # Determine the question type from the quiz data    
-            quiz_type = st.session_state.quiz.get('type', 'Short Question')
-            if prefered_question == "Short Question":
-                answer = st.text_input(q['question'], key=f"q{idx}")
-            elif prefered_question == "QCM":
-                answer = st.selectbox(q['question'], q['options'], key=f"q{idx}")
-            elif prefered_question == "Yes/No":
-                answer = st.selectbox(q['question'], ["Yes", "No"], key=f"q{idx}")
-            else:
-                # Fallback to a text input if type is unknown
-                answer = st.text_input(q['question'], key=f"q{idx}")
-            
-            user_answers[idx] = answer
-            responses.append({
-                "question": q['question'],
-                "user_response": answer,
-                "correct_response": q['answer']
-            })
+    print("summarizing text......")
+    # Summarize each page if the PDF has more than 1 page
+    agent = DataSummarizerAgent(api_key=api_key)
+    if len(text_dict) > 1:
+        summarized_text_dict = {}
+        for page_num, text in text_dict.items():
 
-        if st.button("Submit Answers"):
-            payload = {"responses": responses}
-            with st.spinner("Waiting for the API request to evaluate responses..."):
-                correction_response = requests.post(CORRECT_API_URL, json=payload)
-            
-            if correction_response.status_code == 200:
-                correction_results = correction_response.json()
-                st.write("### Quiz Results")
-                correct_count = 0
-                total_questions = len(responses)
-                
-                for idx, (key, result) in enumerate(correction_results["results"].items()):
-                    st.write(f"**Question {idx+1}:** {responses[idx]['question']}")
-                    st.write(f"Your Answer: {user_answers[idx]}")
-                    
-                    if "true" in result.lower():
-                        correct_count += 1
-                        st.success("Correct!")
-                    else:
-                        st.error("Incorrect!")
-                        st.info(f"Correct Answer: {responses[idx]['correct_response']}")
-                    
-                    st.markdown("---")
-                
-                # Show score alert
-                score = (correct_count / total_questions) * 100
-                st.success(f"Your score: {score:.2f}%")
-                
-                # Provide option to download quiz as JSON with a unique key
-                quiz_json = json.dumps(st.session_state.quiz, indent=4)
-                st.download_button("Download Quiz as JSON", quiz_json, "quiz.json", "application/json", key="download_quiz")
-            else:
-                st.error("Failed to evaluate responses.")
+            summary = agent.summary_chain({"data": text})['text']  # Assuming summarize_text is a function that summarizes the text
+            summarized_text_dict[page_num] = summary
+            print(f"Page {page_num} summarized")
+
+        text_dict = summarized_text_dict
+
+    print("creating quiz questions......")
+    print("prefered question type:",prefered_question)
+    # Initialize the QuizMakerAgent
+    if prefered_question     == "QCM":
+        quiz_maker = QuizMakerAgent_qcm(api_key = api_key)
+    elif prefered_question == "Short Question":
+        quiz_maker = QuizMakerAgent_short_question(api_key = api_key)
+    elif prefered_question == "Yes/No":
+        quiz_maker = QuizMakerAgent_YesNo(api_key = api_key)
+
+    # Generate quiz questions based on the extracted content and difficulty
+    quiz_questions = []
+    combined_text = ""
+    page_count = 0
+
+    for page_num, text in text_dict.items():
+        combined_text += text + "\n"
+        page_count += 1
+
+        if page_count == 5:
+            quiz_questions.append(quiz_maker.quiz_chain({"data": combined_text,"difficulty":difficulty})['text'])
+            combined_text = ""
+            page_count = 0
+
+    # If there are remaining pages that are less than 5
+    if combined_text:
+        quiz_questions.append(quiz_maker.quiz_chain({"data": combined_text,"difficulty":difficulty})['text'])
+
+    print("quiz questions created :",quiz_questions)
+    print("cleaning the cache......")
+    # Clean up the temporary PDF file
+    os.remove(pdf_path)
+
+    # Clean up the output_images folder
+    image_folder = "output_images"
+    if os.path.exists(image_folder):
+        for file in os.listdir(image_folder):
+            file_path = os.path.join(image_folder, file)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+    
+    return {"quiz_questions": quiz_questions}
+
+@app.post("/correct")
+async def correct_quiz(response: QuizResponse):
+    # Correct the quiz based on the user responses
+    results = {}
+    for idx, resp in enumerate(response.responses, start=1):
+        user_response = resp["user_response"]
+        correct_response = resp["correct_response"]
+        question = resp["question"]
+        # Initialize the AnswerCheckerAgent
+        answer_checker = AnswerCheckerAgent(api_key=api_key)
+        result = answer_checker.check_chain({"user_response": user_response, "correct_answer": correct_response, "question": question})['text']
+        results[f"question{idx}"] = result
+    # Compare user responses with correct responses
+    return {"results": results}
 
 if __name__ == "__main__":
-    main()
+    uvicorn.run(app, host="127.0.0.1", port=8000)
