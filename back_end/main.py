@@ -8,7 +8,7 @@ from quiz_based_on_pdf_on_short_question import QuizMakerAgent_ShortQuestion as 
 from quiz_based_on_YesNo import QuizMakerAgent as QuizMakerAgent_YesNo
 from get_image_description import PictureAnalyser
 import uvicorn
-from back_end.summary_batch import DataSummarizerAgent
+from summary_batch import DataSummarizerAgent
 from correct_question import AnswerCheckerAgent
 import os
 from fastapi.middleware.cors import CORSMiddleware
