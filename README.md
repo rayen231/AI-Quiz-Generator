@@ -46,7 +46,6 @@ Navigate to the backend folder :
 - start the FastAPI server
 ```bash
 cd backend
-mkdir output_images
 uvicorn main:app --reload
 ```
 
