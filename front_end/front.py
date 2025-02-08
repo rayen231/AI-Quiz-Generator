@@ -3,8 +3,8 @@ import requests
 import json
 
 # Define API endpoints
-QUIZ_API_URL = "http://127.0.0.1:8000/quiz"
-CORRECT_API_URL = "http://127.0.0.1:8000/correct"
+QUIZ_API_URL = "http://44.226.145.213:8000/quiz"
+CORRECT_API_URL = "http://44.226.145.213:8000/correct"
 
 def main():
     st.title("Quiz Generator and Evaluator")
