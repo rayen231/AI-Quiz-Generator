@@ -61,4 +61,24 @@ streamlit run front.py
 - **Better Model Tuning:** Ongoing improvements in model accuracy and output coherence, based on user feedback.
 ---
 Now you can upload a PDF, select the quiz type, and generate your AI-powered quiz! 🎉
+![image](https://github.com/user-attachments/assets/7279fb6e-5124-49c9-8c48-19cebaed6379)
+![image](https://github.com/user-attachments/assets/40f73605-7adb-4af4-95ce-102b97bf2a9e)
+![image](https://github.com/user-attachments/assets/3d405174-2fca-4299-b2a7-0c08725c240e)
+![image](https://github.com/user-attachments/assets/b5ee21e5-1491-496e-acb1-e3e707379a2c)
+![image](https://github.com/user-attachments/assets/a3b94f52-256a-40de-ac1c-3bede17f95ce)
+![image](https://github.com/user-attachments/assets/49245226-5018-4a49-85da-cebede94dc3c)
+![image](https://github.com/user-attachments/assets/c3253d31-25c4-44d9-b5e2-214dc88faf76)
+![image](https://github.com/user-attachments/assets/cc9f5f2c-e3b1-4b2c-bdb6-2984b54e175a)
+![image](https://github.com/user-attachments/assets/aebec3f5-b159-475a-9b1d-25dd8a785801)
+![image](https://github.com/user-attachments/assets/ea043c77-aef5-4bc0-ba7d-ccd03e5b9ada)
+
+
+
+
+
+
+
+
+
+
 
