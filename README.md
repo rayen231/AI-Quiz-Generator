@@ -4,17 +4,23 @@
 AI Quiz Generator is an intelligent tool that allows you to generate quizzes from any PDF document. Whether you need a multiple-choice quiz, yes/no questions, or short answer questions, our AI-powered system has got you covered.
 
 🚀 **Key Features:**
-- Generate quizzes from PDFs with AI verification for answers.
-- Choose between multiple quiz formats: multiple-choice, yes/no, or short-answer.
-- Option to process images from the PDF alongside text for enhanced question generation.
-- Handles long PDFs efficiently using advanced summarization techniques.
+- **AI-Verified Answers:** Automatically generates and verifies answers for each question.
+- **Multiple Quiz Formats:** Supports multiple question types, including multiple-choice, yes/no, and short-answer.
+- **Image Processing:** Extracts and processes images from PDFs to generate more comprehensive questions.
+- **Long PDF Handling:** Efficiently processes lengthy documents by summarizing and analyzing text with advanced techniques.
+- **Customizable Output:** Generates quizzes in a clean, structured JSON format, perfect for easy integration into various platforms.
+- **LangChain & Agents:** Utilizes LangChain with agents and prompts to ensure the output is fine-tuned and coherent, with temperature control optimized based on multiple test runs.
+- **High Accuracy:** Carefully tuned temperature settings ensure the generated questions are relevant, balanced, and contextually accurate.
+
+---
 
 ## Technologies Used
-- **FastAPI** - Backend API framework.
-- **Streamlit** - Interactive frontend for quiz generation.
-- **LangChain** - AI-driven text processing and quiz generation.
-- **PyMuPDF** - PDF parsing and text/image extraction.
-- **llama-3.3-70b-versatile** - AI-powered question generation and answer verification located in Groq Cloud
+- **FastAPI:** Backend API framework for fast, asynchronous server-side operations.
+- **Streamlit:** Interactive frontend for intuitive quiz generation and management.
+- **LangChain:** AI-powered text processing, quiz generation, and agent orchestration.
+- **PyMuPDF:** PDF parsing and extraction of text and images for enhanced quiz creation.
+- **llama-3.3-70b-versatile (Groq Cloud):** Cutting-edge language model used for question generation and answer verification.
+- **Temperature Control:** The model’s output temperature is finely adjusted based on multiple rounds of testing, ensuring a balance between creativity and accuracy.
 
 ---
 
@@ -40,6 +46,12 @@ Navigate to the frontend folder and start the Streamlit app:
 cd frontend
 streamlit run front.py
 ```
+**Customization Options**
+*You can fine-tune the generated quizzes by adjusting parameters such as:*
+
+-Quiz Type: Choose your preferred question format (multiple-choice, yes/no, or short-answer).
+-Text/Image Handling: Control the depth of image analysis and text summarization for better question generation.
+-Difficulty : choose hard or medium or hard ! 
 
 Now you can upload a PDF, select the quiz type, and generate your AI-powered quiz! 🎉
 
