@@ -26,6 +26,8 @@ AI Quiz Generator is an intelligent tool that allows you to generate quizzes fro
 ---
 ## Live Demo
 You can test the backend live at this [link](https://ai-quiz-generator.onrender.com/docs) and the full app via Streamlit at this [link](https://frontend-nsopw4rp7adjp6evycn4mc.streamlit.app).
+- **Note** :
+  - Please note that some features are still under development. If you encounter any errors or issues while testing the backend or frontend locally, we are aware of them and are working on improvements. We appreciate your understanding and hope you forgive any inconveniences. Your feedback will help us enhance the experience in the future! 😊
 
 ---
 ## Installation
