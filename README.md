@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ### Running the Backend
 Navigate to the backend folder :
 - Add a .env where you specify you groq api key : API_KEY="Your Key "
-- ** You can get the api key from goq cloud for free as personal use !! or simply contact me **
+- **You can get the api key from goq cloud for free as personal use !! or simply contact me**
 - start the FastAPI server
 ```bash
 cd backend
