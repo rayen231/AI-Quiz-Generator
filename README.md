@@ -47,7 +47,7 @@ cd frontend
 streamlit run front.py
 ```
 ---
-###Customization Options
+### Customization Options
 **You can fine-tune the generated quizzes by adjusting parameters such as:**
 
 -Quiz Type: Choose your preferred question format (multiple-choice, yes/no, or short-answer).
