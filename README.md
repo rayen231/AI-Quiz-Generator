@@ -11,6 +11,7 @@ AI Quiz Generator is an intelligent tool that allows you to generate quizzes fro
 - **Customizable Output:** Generates quizzes in a clean, structured JSON format, perfect for easy integration into various platforms.
 - **LangChain & Agents:** Utilizes LangChain with agents and prompts to ensure the output is fine-tuned and coherent, with temperature control optimized based on multiple test runs.
 - **High Accuracy:** Carefully tuned temperature settings ensure the generated questions are relevant, balanced, and contextually accurate.
+- **Level of Difficulty:** Use the level of Difficulty that goes with you task
 
 ---
 
@@ -47,7 +48,7 @@ cd frontend
 streamlit run front.py
 ```
 ---
-### Customization Options
+## Customization Options
 **You can fine-tune the generated quizzes by adjusting parameters such as:**
 
 -Quiz Type: Choose your preferred question format (multiple-choice, yes/no, or short-answer).
